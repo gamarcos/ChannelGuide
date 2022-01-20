@@ -1,0 +1,27 @@
+R_DEF: Internal format may change without notice
+local
+dimen corner_radius
+dimen font_size_large
+dimen font_size_medium
+dimen font_size_small
+dimen image_width
+dimen margin_large
+dimen margin_largest
+dimen margin_medim
+dimen margin_small
+dimen margin_smallest
+drawable ic_placeholder
+id catalog_channel_image
+id catalog_channel_name
+id catalog_content
+id catalog_current_program
+id catalog_list
+id catalog_loading
+id catalog_next_program
+id error_content
+layout activity_catalog
+layout item_catalog
+layout item_catalog_error
+layout item_loading
+string catalog_error_message
+string catalog_retry_message

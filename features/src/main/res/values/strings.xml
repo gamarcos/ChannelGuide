@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="catalog_error_message">Alguma coisa não deu certo :(</string>
+    <string name="catalog_retry_message">Toque aqui para tentar novamente</string>
+</resources>

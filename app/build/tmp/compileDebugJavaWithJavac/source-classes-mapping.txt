@@ -1,0 +1,2 @@
+com/gabrielmarcos/channelguide/BuildConfig.java
+ com.gabrielmarcos.channelguide.BuildConfig

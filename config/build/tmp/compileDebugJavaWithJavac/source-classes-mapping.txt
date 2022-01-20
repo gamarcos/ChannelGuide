@@ -1,0 +1,2 @@
+com/gabrielmarcos/config/BuildConfig.java
+ com.gabrielmarcos.config.BuildConfig

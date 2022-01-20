@@ -1,0 +1,40 @@
+import com.gabrielmarcos.gradle.Dep
+
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+apply plugin: "kotlinx-serialization"
+apply from: "$rootDir/buildScripts/android-config.gradle"
+
+android {
+    defaultConfig {
+        buildConfigField("String", "IMAGE_URL", '"http://cdn-images.online.meo.pt/eemstb/ImageHandler.ashx"')
+    }
+}
+
+dependencies {
+    implementation(project(':config'))
+
+    implementation(Dep.Android.appCompat)
+    implementation(Dep.Android.constraint)
+    implementation(Dep.Android.material)
+    implementation(Dep.Android.recyclerview)
+
+    implementation(Dep.Glide.core)
+    implementation(Dep.Glide.okhttp3)
+    annotationProcessor(Dep.Glide.compiler)
+
+    implementation(Dep.JetPack.viewModel)
+
+    implementation(Dep.Koin.koin)
+    implementation(Dep.Koin.koinExt)
+    implementation(Dep.Koin.koinAndroid)
+
+    implementation(Dep.Kotlin.coroutines)
+    implementation(Dep.Retrofit.core)
+    implementation(Dep.Kotlin.serialization)
+
+    testImplementation(Dep.Kotlin.Test.junit)
+    testImplementation(Dep.Test.Mockk.core)
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
+}

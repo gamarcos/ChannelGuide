@@ -1,0 +1,30 @@
+import com.gabrielmarcos.gradle.Dep
+
+apply plugin: 'com.android.application'
+apply plugin: "kotlin-android"
+apply from: "$rootDir/buildScripts/android-config.gradle"
+
+android {
+
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+        }
+
+        release {
+            proguardFiles getDefaultProguardFile("proguard-android.txt")
+            debuggable true
+            minifyEnabled true
+        }
+    }
+}
+
+dependencies {
+    implementation(project(':config'))
+    implementation(project(':features'))
+
+    implementation Dep.Koin.koin
+    implementation Dep.Koin.koinExt
+    implementation Dep.Koin.koinAndroid
+}
