@@ -78,5 +78,9 @@ class CatalogChannelActivity : AppCompatActivity() {
         })
     }
 
-    private fun getChannels() { viewModel.getChannels() }
+    private fun getChannels() {
+        errorView.visibility = View.GONE
+        progressView.visibility = View.VISIBLE
+        viewModel.getChannels()
+    }
 }

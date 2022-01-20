@@ -15,6 +15,7 @@
         android:theme="@style/Theme.ChannelGuide">
         <activity
             android:name="com.gabrielmarcos.features.catalog.presentation.CatalogChannelActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
