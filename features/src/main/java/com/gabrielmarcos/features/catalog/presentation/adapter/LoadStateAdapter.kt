@@ -43,9 +43,7 @@ class LoadStateAdapter : RecyclerView.Adapter<LoadStateAdapter.LoadStateViewHold
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = LoadStateViewHolder(parent)
     override fun getItemViewType(position: Int): Int = VIEW_ID
     override fun getItemCount(): Int = itemsCount
-    override fun onBindViewHolder(holder: LoadStateViewHolder, position: Int) {
-        holder.bind(loadState)
-    }
+    override fun onBindViewHolder(holder: LoadStateViewHolder, position: Int) { holder.bind(loadState) }
 
     companion object {
         private var VIEW_ID = R.layout.item_loading

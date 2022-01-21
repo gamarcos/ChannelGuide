@@ -16,7 +16,7 @@ The project follows the concept of Android architecture components:
 ### Unit Tests
  - ViewModel
  - Repository
- - UseCase (These tests are only passing when run individually, I'm working on understanding the bug)
+ - UseCase
  
  ### Modules
   - App

@@ -60,7 +60,11 @@ class CatalogChannelActivity : AppCompatActivity() {
             addOnScrollListener(onScrollListener)
         }
 
-        errorView.setOnClickListener { getChannels() }
+        errorView.setOnClickListener {
+            progressView.visibility = View.VISIBLE
+            errorView.visibility = View.GONE
+            getChannels()
+        }
 
         setupObservables()
     }
@@ -79,8 +83,6 @@ class CatalogChannelActivity : AppCompatActivity() {
     }
 
     private fun getChannels() {
-        errorView.visibility = View.GONE
-        progressView.visibility = View.VISIBLE
         viewModel.getChannels()
     }
 }

@@ -7,6 +7,7 @@ import com.gabrielmarcos.features.catalog.programResponse
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
+import org.mockito.ArgumentMatchers.anyString
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
@@ -24,18 +25,18 @@ class CatalogChannelRepositoryImplTest {
     @Test
     fun `when request channels return result success with channel response then assert isSuccess`() =
         runBlocking {
-            coEvery { service.getChannels(skip = "0") } returns channelResponse
+            coEvery { service.getChannels(skip = any()) } returns channelResponse
 
-            val channels = channelCatalogRepository.getCatalogChannels("0")
+            val channels = channelCatalogRepository.getCatalogChannels(anyString())
 
             assert(channels.isSuccess)
         }
 
     @Test
     fun `when request channels throw an exceptions then assert result failure`() = runBlocking {
-        coEvery { service.getChannels(skip = "0") } throws Exception()
+        coEvery { service.getChannels(skip = any()) } throws Exception()
 
-        val channels = channelCatalogRepository.getCatalogChannels(skipParam = "0")
+        val channels = channelCatalogRepository.getCatalogChannels(skipParam = anyString())
 
         assert(channels.isFailure)
     }
@@ -43,13 +44,21 @@ class CatalogChannelRepositoryImplTest {
     @Test
     fun `when request programs return result success with channel response then assert isSuccess`() =
         runBlocking {
-            val callLetter = "0"
 
-            coEvery { service.getPrograms(filter = "CallLetter eq '${callLetter}'") } returns programResponse
+            coEvery { service.getPrograms(filter = any()) } returns programResponse
 
             val programs =
-                channelCatalogRepository.getCatalogPrograms("CallLetter eq '${callLetter}'")
+                channelCatalogRepository.getCatalogPrograms(anyString())
 
             assert(programs.isSuccess)
         }
+
+    @Test
+    fun `when request programs throw an exceptions then assert result failure`() = runBlocking {
+        coEvery { service.getPrograms(filter = any()) } throws Exception()
+
+        val programs = channelCatalogRepository.getCatalogPrograms(anyString())
+
+        assert(programs.isFailure)
+    }
 }

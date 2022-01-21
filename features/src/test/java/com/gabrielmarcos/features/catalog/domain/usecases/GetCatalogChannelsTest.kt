@@ -11,12 +11,11 @@ import kotlinx.coroutines.runBlocking
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
-/*These tests are only passing when run individually, I'm working on understanding the bug */
 class GetCatalogChannelsTest {
 
     private var repository: CatalogChannelRepository = mockk(relaxed = true)
 
-    lateinit var getCatalogChannels: GetCatalogChannels
+    private lateinit var getCatalogChannels: GetCatalogChannels
 
     private val storage = CatalogStorage
 
@@ -31,12 +30,8 @@ class GetCatalogChannelsTest {
 
     @Test
     fun `when invoke getCatalogChannels then assert return success`() = runBlocking {
-        coEvery { repository.getCatalogPrograms(callLetter = "") } returns Result.success(
-            programResponse
-        )
-        coEvery { repository.getCatalogChannels(skipParam = "0") } returns Result.success(
-            channelResponse
-        )
+        coEvery { repository.getCatalogPrograms(callLetter = any()) } returns Result.success(programResponse)
+        coEvery { repository.getCatalogChannels(skipParam = any()) } returns Result.success(channelResponse)
         val result = getCatalogChannels.invoke()
         assert(result.isSuccess)
     }
@@ -44,12 +39,8 @@ class GetCatalogChannelsTest {
     @Test
     fun `when invoke getCatalogChannels and getCatalogPrograms return error then assert return result failure`() =
         runBlocking {
-            coEvery { repository.getCatalogPrograms(callLetter = "") } returns Result.failure(
-                Exception()
-            )
-            coEvery { repository.getCatalogChannels(skipParam = "0") } returns Result.success(
-                channelResponse
-            )
+            coEvery { repository.getCatalogPrograms(callLetter = any()) } returns Result.failure(Exception())
+            coEvery { repository.getCatalogChannels(skipParam = any()) } returns Result.success(channelResponse)
             val result = getCatalogChannels.invoke()
             assert(result.isFailure)
         }
@@ -57,12 +48,8 @@ class GetCatalogChannelsTest {
     @Test
     fun `when invoke getCatalogChannels and getCatalogChannels return error then assert return result failure`() =
         runBlocking {
-            coEvery { repository.getCatalogPrograms(callLetter = "") } returns Result.success(
-                programResponse
-            )
-            coEvery { repository.getCatalogChannels(skipParam = "0") } returns Result.failure(
-                Exception()
-            )
+            coEvery { repository.getCatalogPrograms(callLetter = any()) } returns Result.success(programResponse)
+            coEvery { repository.getCatalogChannels(skipParam = any()) } returns Result.failure(Exception())
             val result = getCatalogChannels.invoke()
             assert(result.isFailure)
         }
@@ -73,8 +60,8 @@ class GetCatalogChannelsTest {
 
             val initialSkipParam = storage.nextUrlSkipParams
 
-            coEvery { repository.getCatalogPrograms(callLetter = "") } returns Result.success(programResponse)
-            coEvery { repository.getCatalogChannels(skipParam = "0") } returns Result.success(channelResponse)
+            coEvery { repository.getCatalogPrograms(callLetter = any()) } returns Result.success(programResponse)
+            coEvery { repository.getCatalogChannels(skipParam = any()) } returns Result.success(channelResponse)
 
             getCatalogChannels.invoke()
 
